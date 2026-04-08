@@ -18,6 +18,8 @@
   --blue-glow: #0077ee;
   --vk-blue: #0077ff;
   --tg-blue: #2AABEE;
+  --max-blue: #4B8EFF;
+  --max-purple: #9B3FFF;
   --bg: #050510;
   --bg-card: rgba(255,255,255,0.03);
   --text: #f0f2f5;
@@ -64,6 +66,12 @@ body::before {
   background: radial-gradient(circle, rgba(0,119,255,0.12), transparent 70%);
   bottom: -150px; right: -150px;
   animation: floatOrb 15s ease-in-out infinite reverse;
+}
+.glow-orb.max {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(155,63,255,0.1), transparent 70%);
+  top: 60%; left: 50%;
+  animation: floatOrb 18s ease-in-out infinite;
 }
 
 @keyframes floatOrb {
@@ -150,6 +158,12 @@ h1 {
 }
 h1 .gradient {
   background: linear-gradient(135deg, var(--tg-blue), var(--vk-blue), #5b7fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 .gradient-max {
+  background: linear-gradient(135deg, var(--max-blue), var(--max-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -326,6 +340,175 @@ h1 .gradient {
   0%, 100% { transform: translateY(0) rotateY(0deg) rotateX(0deg); }
   25% { transform: translateY(-8px) rotateY(4deg) rotateX(2deg); }
   75% { transform: translateY(4px) rotateY(-3deg) rotateX(-1deg); }
+}
+
+/* --- BOTS SECTION --- */
+.bots-section {
+  padding: 20px 0 80px;
+}
+.bots-label {
+  text-align: center;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--blue-light);
+  margin-bottom: 16px;
+}
+.bots-title {
+  text-align: center;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+}
+.bots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.bot-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 28px;
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 60px rgba(0,119,255,0.1);
+  border-color: rgba(0,136,255,0.2);
+}
+.bot-card-max:hover {
+  box-shadow: 0 16px 60px rgba(155,63,255,0.12);
+  border-color: rgba(155,63,255,0.25);
+}
+.bot-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.bot-card:hover::before { opacity: 1; }
+.bot-card-vk::before {
+  background: linear-gradient(90deg, transparent, rgba(0,136,255,0.5), transparent);
+}
+.bot-card-max::before {
+  background: linear-gradient(90deg, transparent, rgba(155,63,255,0.5), transparent);
+}
+.bot-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Unbounded', sans-serif;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+}
+.bot-card-vk .bot-card-badge {
+  background: rgba(0,119,255,0.12);
+  border: 1px solid rgba(0,119,255,0.2);
+  color: #5ba4ff;
+}
+.bot-card-max .bot-card-badge {
+  background: rgba(155,63,255,0.12);
+  border: 1px solid rgba(155,63,255,0.25);
+  color: #c07aff;
+}
+.bot-card-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.bot-icon-sm {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.bot-icon-sm.tg {
+  background: linear-gradient(145deg, #32b5f1, #1a8fd4);
+  box-shadow: 0 8px 24px rgba(42,171,238,0.3);
+}
+.bot-icon-sm.vk {
+  background: linear-gradient(145deg, #2d8cf5, #0066dd);
+  box-shadow: 0 8px 24px rgba(0,119,255,0.3);
+}
+.bot-icon-sm.max-ico {
+  background: linear-gradient(145deg, #4B8EFF, #9B3FFF);
+  box-shadow: 0 8px 24px rgba(155,63,255,0.35);
+}
+.bot-icon-sm svg { width: 30px; height: 30px; fill: #fff; }
+.bot-arrow-sm {
+  font-size: 18px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 300;
+}
+.bot-card h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.bot-card p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+.btn-max {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 32px;
+  background: linear-gradient(135deg, var(--max-blue), var(--max-purple));
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-max:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 40px rgba(155,63,255,0.45);
+}
+.new-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: linear-gradient(135deg, var(--max-blue), var(--max-purple));
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Unbounded', sans-serif;
+  color: #fff;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-left: 8px;
+  position: relative;
+  top: -2px;
 }
 
 /* --- FEATURES --- */
@@ -510,6 +693,8 @@ footer {
   .cta-box { padding: 48px 24px; }
   .cta-group { flex-direction: column; }
   .features-grid { grid-template-columns: 1fr; }
+  .bots-grid { grid-template-columns: 1fr; }
+  .bot-card { padding: 32px 24px; }
 }
 </style>
 </head>
@@ -517,6 +702,7 @@ footer {
 
 <div class="glow-orb tg"></div>
 <div class="glow-orb vk"></div>
+<div class="glow-orb max"></div>
 
 <div class="container">
   <!-- NAV -->
@@ -531,36 +717,66 @@ footer {
   <!-- HERO -->
   <section class="hero">
     <div class="badge">Автопостинг 24/7</div>
-    <h1>Из Telegram<br>в <span class="gradient">ВКонтакте</span><br>за секунду</h1>
+    <h1>Из Telegram<br>в <span class="gradient">ВКонтакте</span> или <span class="gradient-max">MAX</span><br>за секунду</h1>
     <p class="hero-sub">Мгновенное дублирование постов. Один канал — две аудитории. Без ручной работы, без задержек.</p>
 
-    <!-- 3D Scene -->
-    <div class="scene-3d">
-      <div class="scene-inner">
-        <div class="icon-3d tg">
-          <svg viewBox="0 0 48 48"><path d="M5.83 23.616c12.57-5.48 20.95-9.1 25.14-10.84 11.98-4.98 14.47-5.85 16.1-5.87.36-.01 1.16.08 1.68.5.44.35.56.82.62 1.15.06.33.13 1.09.07 1.68-0.67 7.05-3.58 24.16-5.06 32.06-.63 3.34-1.86 4.46-3.06 4.57-2.6.24-4.58-1.72-7.1-3.37-3.95-2.58-6.18-4.19-10.01-6.71-4.43-2.92-1.56-4.52.97-7.14.66-.69 12.13-11.12 12.35-12.07.03-.12.05-.55-.21-.78-.25-.23-.63-.15-.9-.09-.38.09-6.48 4.12-18.3 12.1-1.73 1.19-3.3 1.77-4.71 1.74-1.55-.04-4.54-0.88-6.76-1.6-2.72-.89-4.89-1.36-4.7-2.87.1-.79 1.15-1.59 3.18-2.42z"/></svg>
-        </div>
-        <div class="arrow-flow">
-          <div class="dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/><path d="M5 12h14" stroke="#39a0ff" stroke-width="2" fill="none"/><path d="M13 6l6 6-6 6" stroke="#39a0ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="icon-3d vk">
-          <svg viewBox="0 0 48 48"><path d="M25.54 34.58c-10.94 0-17.18-7.5-17.44-19.98h5.48c.18 9.16 4.22 13.04 7.42 13.84V14.6h5.16v7.9c3.16-.34 6.48-3.94 7.6-7.9h5.16c-.86 4.88-4.46 8.48-7.02 9.96 2.56 1.2 6.64 4.36 8.2 10.02h-5.68c-1.22-3.82-4.28-6.78-8.26-7.18v7.18h-.62z"/></svg>
-        </div>
-      </div>
-    </div>
+  </section>
 
-    <div class="cta-group">
-      <a href="https://t.me/recopolevoy_bot" class="btn-primary" target="_blank">
-        Подключить автопостинг
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#features" class="btn-secondary">Как это работает</a>
+  <!-- BOTS SECTION -->
+  <section class="bots-section" id="bots">
+    <div class="bots-title">Выберите платформу</div>
+    <div class="bots-grid">
+
+      <!-- TG → VK -->
+      <div class="bot-card bot-card-vk">
+        <div class="bot-card-badge">✦ Репостер</div>
+        <div class="bot-card-icons">
+          <div class="bot-icon-sm tg">
+            <svg viewBox="0 0 48 48"><path d="M5.83 23.616c12.57-5.48 20.95-9.1 25.14-10.84 11.98-4.98 14.47-5.85 16.1-5.87.36-.01 1.16.08 1.68.5.44.35.56.82.62 1.15.06.33.13 1.09.07 1.68-0.67 7.05-3.58 24.16-5.06 32.06-.63 3.34-1.86 4.46-3.06 4.57-2.6.24-4.58-1.72-7.1-3.37-3.95-2.58-6.18-4.19-10.01-6.71-4.43-2.92-1.56-4.52.97-7.14.66-.69 12.13-11.12 12.35-12.07.03-.12.05-.55-.21-.78-.25-.23-.63-.15-.9-.09-.38.09-6.48 4.12-18.3 12.1-1.73 1.19-3.3 1.77-4.71 1.74-1.55-.04-4.54-0.88-6.76-1.6-2.72-.89-4.89-1.36-4.7-2.87.1-.79 1.15-1.59 3.18-2.42z"/></svg>
+          </div>
+          <span class="bot-arrow-sm">→</span>
+          <div class="bot-icon-sm vk">
+            <svg viewBox="0 0 48 48"><path d="M25.54 34.58c-10.94 0-17.18-7.5-17.44-19.98h5.48c.18 9.16 4.22 13.04 7.42 13.84V14.6h5.16v7.9c3.16-.34 6.48-3.94 7.6-7.9h5.16c-.86 4.88-4.46 8.48-7.02 9.96 2.56 1.2 6.64 4.36 8.2 10.02h-5.68c-1.22-3.82-4.28-6.78-8.26-7.18v7.18h-.62z"/></svg>
+          </div>
+        </div>
+        <h3>Telegram → ВКонтакте</h3>
+        <p>Автоматически дублирует посты из вашего Telegram-канала в группу ВКонтакте. Работает 24/7, без задержек и ручного труда.</p>
+        <a href="https://t.me/recopolevoy_bot" class="btn-primary" target="_blank">
+          Подключить
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- TG → MAX -->
+      <div class="bot-card bot-card-max">
+        <div class="bot-card-badge">✦ Новинка <span class="new-tag">NEW</span></div>
+        <div class="bot-card-icons">
+          <div class="bot-icon-sm tg">
+            <svg viewBox="0 0 48 48"><path d="M5.83 23.616c12.57-5.48 20.95-9.1 25.14-10.84 11.98-4.98 14.47-5.85 16.1-5.87.36-.01 1.16.08 1.68.5.44.35.56.82.62 1.15.06.33.13 1.09.07 1.68-0.67 7.05-3.58 24.16-5.06 32.06-.63 3.34-1.86 4.46-3.06 4.57-2.6.24-4.58-1.72-7.1-3.37-3.95-2.58-6.18-4.19-10.01-6.71-4.43-2.92-1.56-4.52.97-7.14.66-.69 12.13-11.12 12.35-12.07.03-.12.05-.55-.21-.78-.25-.23-.63-.15-.9-.09-.38.09-6.48 4.12-18.3 12.1-1.73 1.19-3.3 1.77-4.71 1.74-1.55-.04-4.54-0.88-6.76-1.6-2.72-.89-4.89-1.36-4.7-2.87.1-.79 1.15-1.59 3.18-2.42z"/></svg>
+          </div>
+          <span class="bot-arrow-sm">→</span>
+          <div class="bot-icon-sm max-ico">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="22" r="14" fill="white" opacity="0.95"/>
+              <circle cx="24" cy="22" r="8" fill="url(#maxGrad)"/>
+              <path d="M17 22 Q17 36 24 36 Q17 36 17 42" fill="white" opacity="0.95"/>
+              <defs>
+                <linearGradient id="maxGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4B8EFF"/>
+                  <stop offset="100%" stop-color="#9B3FFF"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+        <h3>Telegram → MAX</h3>
+        <p>Новый репостер для публикации контента из Telegram в мессенджер MAX. Охватите аудиторию одной из самых быстрорастущих платформ России.</p>
+        <a href="https://t.me/repostgmax_bot" class="btn-max" target="_blank">
+          Подключить
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -585,7 +801,7 @@ footer {
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="features-label">Преимущества</div>
-    <div class="features-title">Зачем вам это нужно</div>
+    <div class="features-title">Прокачай ВК и MAX без усилий</div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
@@ -620,20 +836,25 @@ footer {
     </div>
   </section>
 
-  <!-- CTA BOTTOM -->
   <section class="cta-bottom">
     <div class="cta-box">
       <h2>Готовы начать?</h2>
-      <p>Подключите бот за 30 секунд и начните дублировать контент в ВК</p>
-      <a href="https://t.me/recopolevoy_bot" class="btn-primary" target="_blank">
-        Подключить автопостинг
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <p>Подключите бота за 30 секунд и начните дублировать контент автоматически</p>
+      <div class="cta-group">
+        <a href="https://t.me/recopolevoy_bot" class="btn-primary" target="_blank">
+          TG → ВКонтакте
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://t.me/repostgmax_bot" class="btn-max" target="_blank">
+          TG → MAX
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
-    © 2026 RecoPost — Автопостинг из Telegram в ВКонтакте
+    © 2026 RecoPost — Автопостинг из Telegram в ВКонтакте и MAX
   </footer>
 </div>
 
